@@ -193,6 +193,24 @@
 			
 			update_tiles();
 		};
+		
+		self.center_coord = function(top, left) {
+			var offset = $draggable.offset();
+			var new_offset = { 
+				left: left, 
+				top: top
+			};
+			
+			if (_do.axis == "x") {
+				new_offset.top = offset.top;
+			} else if (_do.axis == "y") {
+				new_offset.left = offset.left;
+			}
+			
+			$draggable.offset(new_offset);
+			
+			update_tiles();
+		}
 
 		// Setup
 		//--------
