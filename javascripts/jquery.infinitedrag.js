@@ -171,8 +171,13 @@
 		
 		self.center = function(col, row) {
 			var x = _to.width * col,
-				y = _to.height * row,
-				half_width = _to.width / 2,
+				y = _to.height * row;
+
+			self.center_coord(x, y);
+		};
+		
+		self.center_coord = function(x, y) {
+			var half_width = _to.width / 2,
 				half_height = _to.height / 2,
 				half_vw_width = $viewport.width() / 2,
 				half_vw_height = $viewport.height() / 2,
@@ -181,24 +186,6 @@
 			var new_offset = { 
 				left: -x - (half_width - half_vw_width), 
 				top: -y - (half_height - half_vw_height)
-			};
-			
-			if (_do.axis == "x") {
-				new_offset.top = offset.top;
-			} else if (_do.axis == "y") {
-				new_offset.left = offset.left;
-			}
-			
-			$draggable.offset(new_offset);
-			
-			update_tiles();
-		};
-		
-		self.center_coord = function(top, left) {
-			var offset = $draggable.offset();
-			var new_offset = { 
-				left: left, 
-				top: top
 			};
 			
 			if (_do.axis == "x") {
