@@ -176,7 +176,7 @@
 			self.center_coord(x, y);
 		};
 		
-		self.center_coord = function(x, y) {
+		self.center_coord = function(x, y, animate_options) {
 			var half_width = _to.width / 2,
 				half_height = _to.height / 2,
 				half_vw_width = $viewport.width() / 2,
@@ -194,9 +194,15 @@
 				new_offset.left = offset.left;
 			}
 			
-			$draggable.offset(new_offset);
+
+			if (typeof animate_options == "undefined") {
+				$draggable.offset(new_offset);
+			} else {
+				animate_options.complete = function() {update_tiles();};
+				$draggable.animate(new_offset, animate_options);
+			}
 			
-			update_tiles();
+			
 		}
 
 		// Setup
