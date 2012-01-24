@@ -202,7 +202,7 @@
 				$draggable.animate(new_offset, animate_options);
 			}
 			
-			
+			update_tiles();
 		}
 
 		// Setup
